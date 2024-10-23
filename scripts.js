@@ -5,9 +5,16 @@ function changeColour(square) {
     square.style.backgroundColor = "black";
 }
 
+function removeSquares() {
+    const rows = document.querySelectorAll(".row");
+    rows.forEach(row => {
+        row.remove();
+    });
+}
+
 // set the square colour to the default
 function resetSquares() {
-    const squares = document.querySelectorAll(".square")
+    const squares = document.querySelectorAll(".square");
     squares.forEach(square => {
         square.classList.add("default-square-color");
     });
@@ -29,5 +36,5 @@ function generateGrid(width) {
     resetSquares();
 }
 
-generateGrid(30);
+generateGrid(100);
 resetSquares();
