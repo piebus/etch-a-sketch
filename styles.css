@@ -8,8 +8,11 @@
 }
 
 .square {
-    background-color: blueviolet;
     width: 10px;
     height: 10px;
-    margin: 10px;
+    margin: 1px;
+}
+
+.default-square-color {
+    background-color: lightgray;
 }
