@@ -1,7 +1,18 @@
 const container = document.querySelector(".container");
 const clearGridButton = document.querySelector(".clear-grid");
+const newGridButton = document.querySelector(".new-grid");
 
 clearGridButton.addEventListener("click", () => resetSquares());
+newGridButton.addEventListener("click", () => makeUserDefinedGrid());
+
+// sets the number of squares to 100 if the user enters bad input
+function getGridWidthFromUser() {
+    var declaredWidth = prompt("Enter grid width, max of 100");
+    if (Number.isNaN(Number(declaredWidth))) {declaredWidth = "100";}
+    const width = Number(declaredWidth);
+    if (width < 1 || width > 100) {return 100;}
+    return width;
+}
 
 function calculatePixelWidth(numberOfSquares) {
     const CANVAS_DIMENSION = 960;
@@ -45,6 +56,11 @@ function makeGrid(numberOfSquares) {
     resetSquares();
 }
 
+function makeUserDefinedGrid() {
+    const numberOfSquares = getGridWidthFromUser();
+    makeGrid(numberOfSquares);
+}
+
 // generate the grid of squares by making rows
 function makeGridSquares(width) {
     for(var i = 0; i < width; i++) {
@@ -60,5 +76,4 @@ function makeGridSquares(width) {
     }
 }
 
-makeGrid(10);
-resetSquares();
+makeGrid(20);
