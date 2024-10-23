@@ -1,4 +1,6 @@
 const container = document.querySelector(".container");
+const clearGridButton = document.querySelector(".clear-grid");
+
 
 function changeColour(square) {
     square.classList.remove("default-square-color");
@@ -12,11 +14,13 @@ function removeSquares() {
     });
 }
 
+clearGridButton.addEventListener("click", () => resetSquares());
+
 // set the square colour to the default
 function resetSquares() {
     const squares = document.querySelectorAll(".square");
     squares.forEach(square => {
-        square.classList.add("default-square-color");
+        square.style.backgroundColor = "lightgrey";
     });
 }
 
