@@ -1,6 +1,13 @@
 const container = document.querySelector(".container");
 const clearGridButton = document.querySelector(".clear-grid");
 
+clearGridButton.addEventListener("click", () => resetSquares());
+
+function calculatePixelWidth(numberOfSquares) {
+    const CANVAS_DIMENSION = 960;
+    const width = CANVAS_DIMENSION/numberOfSquares;
+    return width;
+}
 
 function changeColour(square) {
     square.classList.remove("default-square-color");
@@ -14,8 +21,6 @@ function removeSquares() {
     });
 }
 
-clearGridButton.addEventListener("click", () => resetSquares());
-
 // set the square colour to the default
 function resetSquares() {
     const squares = document.querySelectorAll(".square");
@@ -24,8 +29,24 @@ function resetSquares() {
     });
 }
 
+function setSquareSize(width) {
+    const squares = document.querySelectorAll(".square");
+    squares.forEach(square => {
+        square.style.width = `${width}px`;
+        square.style.height = `${width}px`;
+    });
+}
+
+function makeGrid(numberOfSquares) {
+    const squareWidth = calculatePixelWidth(numberOfSquares);
+    removeSquares();
+    makeGridSquares(numberOfSquares);
+    setSquareSize(squareWidth);
+    resetSquares();
+}
+
 // generate the grid of squares by making rows
-function generateGrid(width) {
+function makeGridSquares(width) {
     for(var i = 0; i < width; i++) {
         const rowOfSqaures = document.createElement("div");
         rowOfSqaures.className = "row";
@@ -37,8 +58,7 @@ function generateGrid(width) {
         }
         container.appendChild(rowOfSqaures);
     }
-    resetSquares();
 }
 
-generateGrid(100);
+makeGrid(10);
 resetSquares();
