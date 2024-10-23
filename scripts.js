@@ -1,5 +1,11 @@
 const container = document.querySelector(".container");
 
+function changeColour(square) {
+    square.classList.remove("default-square-color");
+    square.style.backgroundColor = "black";
+}
+
+// set the square colour to the default
 function resetSquares() {
     const squares = document.querySelectorAll(".square")
     squares.forEach(square => {
@@ -7,6 +13,7 @@ function resetSquares() {
     });
 }
 
+// generate the grid of squares by making rows
 function generateGrid(width) {
     for(var i = 0; i < width; i++) {
         const rowOfSqaures = document.createElement("div");
@@ -14,6 +21,7 @@ function generateGrid(width) {
         for (var j = 0; j < width; j++) {
             const square = document.createElement("div");
             square.classList.add("square");
+            square.addEventListener("mouseover", () => changeColour(square));
             rowOfSqaures.appendChild(square);
         }
         container.appendChild(rowOfSqaures);
